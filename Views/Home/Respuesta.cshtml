@@ -1,0 +1,16 @@
+@{
+    ViewData["title"] = "¿Fue correcta?";
+}
+
+<div style="background-color: blue;">
+    @if(ViewBag.EsCorrecta){
+        <p>¡Respuesta correcta!</p>
+    }
+    else{
+        <p>Respuesta incorrecta...
+        La respuesta correcta era: @ViewBag.RespuestaCorrecta.Contenido
+        </p>
+    }
+
+    <a href='@Url.Action("Jugar", "Home")'>Siguiente pregunta</a>
+</div>

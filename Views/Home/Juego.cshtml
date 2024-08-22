@@ -1,0 +1,24 @@
+@{
+    ViewData["title"] = $"¡Nueva pregunta!";
+}
+
+<div class="text-center">
+    <p>Tu nombre de usuario: @ViewBag.Username | Tu puntaje actual: @ViewBag.PuntajeActual</p>
+    <p>Pregunta N°@ViewBag.Progreso</p>
+    @if(ViewBag.Pregunta.Foto != ""){
+        <img src="@ViewBag.Pregunta.Foto" alt="Foto de la pregunta">
+    }
+
+    <form method="POST" action='@Url.Action("VerificarRespuesta", "Home")'>
+        <input type="hidden" name="IdPregunta" value="@ViewBag.Pregunta.IdPregunta">
+        @foreach(Respuesta respuesta in ViewBag.Respuestas){
+            <div class="Respuesta">
+                @if(respuesta.Foto != ""){
+                    <img src="@respuesta.Foto" alt="Foto de la respuesta">
+                }
+                <input id="@respuesta.IdRespuesta" type="radio" name="IdRespuesta" value="@respuesta.IdRespuesta">
+                <label for="@respuesta.IdRespuesta">@respuesta.Contenido</label>
+            </div>
+        }
+    </form>
+</div>

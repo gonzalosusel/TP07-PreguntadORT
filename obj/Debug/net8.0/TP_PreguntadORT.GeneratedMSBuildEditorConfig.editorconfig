@@ -18,12 +18,24 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = c:\Users\devandroid\Downloads\TP_PreguntadORT
 build_property._RazorSourceGeneratorDebug = 
 
+[c:/Users/devandroid/Downloads/TP_PreguntadORT/Views/Home/ConfigurarJuego.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDb25maWd1cmFySnVlZ28uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/devandroid/Downloads/TP_PreguntadORT/Views/Home/Fin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxGaW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [c:/Users/devandroid/Downloads/TP_PreguntadORT/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/devandroid/Downloads/TP_PreguntadORT/Views/Home/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+[c:/Users/devandroid/Downloads/TP_PreguntadORT/Views/Home/Juego.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxKdWVnby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/devandroid/Downloads/TP_PreguntadORT/Views/Home/Respuesta.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxSZXNwdWVzdGEuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [c:/Users/devandroid/Downloads/TP_PreguntadORT/Views/Shared/Error.cshtml]

@@ -19324,7 +19324,7 @@
         }
       }
     ],
-    "CSharpLanguageVersion": 1100
+    "CSharpLanguageVersion": 2147483646
   },
   "RootNamespace": "TP_PreguntadORT",
   "Documents": [
@@ -19334,13 +19334,13 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\devandroid\\Downloads\\TP_PreguntadORT\\Views\\Home\\Privacy.cshtml",
-      "TargetPath": "Views\\Home\\Privacy.cshtml",
+      "FilePath": "c:\\Users\\devandroid\\Downloads\\TP_PreguntadORT\\Views\\Shared\\_Layout.cshtml",
+      "TargetPath": "Views\\Shared\\_Layout.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\devandroid\\Downloads\\TP_PreguntadORT\\Views\\Shared\\_Layout.cshtml",
-      "TargetPath": "Views\\Shared\\_Layout.cshtml",
+      "FilePath": "c:\\Users\\devandroid\\Downloads\\TP_PreguntadORT\\Views\\Home\\Fin.cshtml",
+      "TargetPath": "Views\\Home\\Fin.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -19354,8 +19354,23 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\devandroid\\Downloads\\TP_PreguntadORT\\Views\\Home\\Respuesta.cshtml",
+      "TargetPath": "Views\\Home\\Respuesta.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\devandroid\\Downloads\\TP_PreguntadORT\\Views\\Home\\Juego.cshtml",
+      "TargetPath": "Views\\Home\\Juego.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\devandroid\\Downloads\\TP_PreguntadORT\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\devandroid\\Downloads\\TP_PreguntadORT\\Views\\Home\\ConfigurarJuego.cshtml",
+      "TargetPath": "Views\\Home\\ConfigurarJuego.cshtml",
       "FileKind": "mvc"
     },
     {

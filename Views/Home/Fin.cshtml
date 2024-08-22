@@ -1,0 +1,8 @@
+@{
+    ViewData["title"] = "¡El fin!";
+}
+
+<div class="text-center">
+    <p>Tu nombre de usuario: @ViewBag.Username | Tu puntaje final: @ViewBag.PuntajeActual</p> 
+    <a href='@Url.Action("ConfigurarJuego", "Home")'>Reiniciar partida</a>
+</div>
