@@ -3,20 +3,20 @@
 }
 
 <div class="text-center">
-    <form method="GET" action='@Url.Action("Comenzar", "Home")'>
-        <input required="required" type="text" name="Username" placeholder="Nombre de usuario">
+    <form method="POST" action='@Url.Action("Comenzar", "Home")'>
+        <input required="required" type="text" name="Username" placeholder="Nombre de usuario"><br>
         <select required="required" name="IdDificultad">
             <option value="-1">Todas</option>
             @foreach(Dificultad dificultad in ViewBag.Dificultades){
                 <option value="@dificultad.IdDificultad">@dificultad.Nombre</option>
             }
-        </select>
+        </select><br>
         <select required="required" name="IdCategoria">
             <option value="-1">Todas</option>
             @foreach(Categoria categoria in ViewBag.Categorias){
                 <option value="@categoria.IdCategoria">@categoria.Nombre</option>
             }
-        </select>
+        </select><br>
         <button>Enviar</button>
     </form>
 </div>

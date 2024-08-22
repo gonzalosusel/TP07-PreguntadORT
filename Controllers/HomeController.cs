@@ -17,6 +17,7 @@ public class HomeController : Controller
         return View();
     }
 
+    [HttpPost]
     public IActionResult Comenzar(string Username, int IdDificultad, int IdCategoria){
         if(!Juego.CargarPartida(Username, IdDificultad, IdCategoria)){
             return View("ConfigurarJuego");
@@ -35,6 +36,7 @@ public class HomeController : Controller
         return View();
     }
 
+    [HttpPost]
     public IActionResult VerificarRespuesta(int IdPregunta, int IdRespuesta){
         ViewBag.EsCorrecta = Juego.VerificarRespuesta(IdPregunta, IdRespuesta);
         ViewBag.RespuestaCorrecta = BD.ObtenerRespuestaCorrecta(IdPregunta);
