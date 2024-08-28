@@ -1,5 +1,14 @@
-public class Respuesta(int IdRespuesta, int IdPregunta, int Opcion, string Contenido, bool Correcta, string? Foto){
-    public int IdRespuesta = IdRespuesta, IdPregunta = IdPregunta, Opcion = Opcion;
-    public string Contenido = Contenido, Foto = Foto ?? "";
-    public bool Correcta = Correcta;
+public class Respuesta{
+    public int IdRespuesta, IdPregunta, Opcion;
+    public string Contenido, Foto;
+    public bool Correcta;
+
+    public Respuesta(int IdRespuesta, int IdPregunta, int Opcion, string Contenido, bool Correcta, string? Foto){
+        this.IdRespuesta = IdRespuesta;
+        this.IdPregunta = IdPregunta;
+        this.Opcion = Opcion;
+        this.Contenido = Contenido;
+        this.Foto = Foto ?? "";
+        this.Correcta = Correcta;
+    }
 }

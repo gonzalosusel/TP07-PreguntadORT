@@ -1,7 +1,7 @@
 {
   "version": 3,
   "targets": {
-    "net8.0": {
+    "net7.0": {
       "Dapper/2.1.35": {
         "type": "package",
         "compile": {
@@ -499,7 +499,7 @@
     }
   },
   "projectFileDependencyGroups": {
-    "net8.0": [
+    "net7.0": [
       "System.Data.SqlClient >= 4.8.6",
       "dapper >= 2.1.35"
     ]
@@ -511,11 +511,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\devandroid\\Downloads\\TP_PreguntadORT\\TP_PreguntadORT.csproj",
+      "projectUniqueName": "C:\\Users\\devandroid\\Downloads\\TP07-PreguntadORT\\TP_PreguntadORT.csproj",
       "projectName": "TP_PreguntadORT",
-      "projectPath": "C:\\Users\\devandroid\\Downloads\\TP_PreguntadORT\\TP_PreguntadORT.csproj",
+      "projectPath": "C:\\Users\\devandroid\\Downloads\\TP07-PreguntadORT\\TP_PreguntadORT.csproj",
       "packagesPath": "C:\\Users\\devandroid\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\devandroid\\Downloads\\TP_PreguntadORT\\obj\\",
+      "outputPath": "C:\\Users\\devandroid\\Downloads\\TP07-PreguntadORT\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -526,15 +526,15 @@
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net8.0"
+        "net7.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net8.0": {
-          "targetAlias": "net8.0",
+        "net7.0": {
+          "targetAlias": "net7.0",
           "projectReferences": {}
         }
       },
@@ -550,8 +550,8 @@
       }
     },
     "frameworks": {
-      "net8.0": {
-        "targetAlias": "net8.0",
+      "net7.0": {
+        "targetAlias": "net7.0",
         "dependencies": {
           "System.Data.SqlClient": {
             "target": "Package",
@@ -573,6 +573,24 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[7.0.20, 7.0.20]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[7.0.20, 7.0.20]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[7.0.20, 7.0.20]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[7.0.20, 7.0.20]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -581,7 +599,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.206/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.206\\RuntimeIdentifierGraph.json"
       }
     }
   }
