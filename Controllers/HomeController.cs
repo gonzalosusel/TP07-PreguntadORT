@@ -19,21 +19,15 @@ public class HomeController : Controller
 
     [HttpPost]
     public IActionResult Comenzar(string Username, int IdDificultad, int IdCategoria){
-        if(!Juego.CargarPartida(Username, IdDificultad, IdCategoria)){
-            return View("ConfigurarJuego");
-        }
+        if(!Juego.CargarPartida(Username, IdDificultad, IdCategoria)) return ConfigurarJuego();
         
-        return View("Jugar");
-    }
-
-    public IActionResult Jugar(){
         ViewBag.Pregunta = Juego.ObtenerProximaPregunta();
         if(ViewBag.Pregunta == null) return Fin();
         ViewBag.Respuestas = Juego.ObtenerProximasRespuestas(ViewBag.Pregunta.IdPregunta);
         ViewBag.Username = Juego.Username;
         ViewBag.PuntajeActual = Juego.PuntajeActual;
         ViewBag.Progreso = Juego.Progreso;
-        return View();
+        return View("Jugar");
     }
 
     [HttpPost]

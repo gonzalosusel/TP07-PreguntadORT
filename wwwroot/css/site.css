@@ -20,3 +20,10 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.Respuesta{
+  border: 1px solid black;
+  margin-bottom: 2%;
+  border-radius: 30px;
+  width: 20%;
+}
