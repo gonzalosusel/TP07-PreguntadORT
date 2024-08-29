@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using TP_PreguntadORT.Models;
+using System.Web;
 
 namespace TP_PreguntadORT.Controllers;
 
@@ -10,6 +11,7 @@ public class HomeController : Controller
     public HomeController(ILogger<HomeController> logger) =>_logger = logger;
     public IActionResult Index() => View();
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)] public IActionResult Error() => View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+    
     public IActionResult ConfigurarJuego(){
         Juego.InicializarJuego();
         ViewBag.Categorias = BD.ObtenerCategorias();
@@ -17,17 +19,20 @@ public class HomeController : Controller
         return View();
     }
 
-    [HttpPost]
-    public IActionResult Comenzar(string Username, int IdDificultad, int IdCategoria){
-        if(!Juego.CargarPartida(Username, IdDificultad, IdCategoria)) return ConfigurarJuego();
-        
-        ViewBag.Pregunta = Juego.ObtenerProximaPregunta();
-        if(ViewBag.Pregunta == null) return Fin();
-        ViewBag.Respuestas = Juego.ObtenerProximasRespuestas(ViewBag.Pregunta.IdPregunta);
+    public IActionResult Jugar(string? Username, int IdDificultad, int IdCategoria){
+        // Volver al formulario de inicio si:
+        // Se envió un nombre de usuario y hubo un fallo al guardarlo
+        // O el juego no tiene ningún nombre de usuario registrado (En caso de que alguien intente abrir la view directamente)
+        if((!string.IsNullOrEmpty(Username) && !Juego.CargarPartida(Username, IdDificultad, IdCategoria)) || Juego.Username == "") return View("ConfigurarJuego");
+
         ViewBag.Username = Juego.Username;
         ViewBag.PuntajeActual = Juego.PuntajeActual;
         ViewBag.Progreso = Juego.Progreso;
-        return View("Jugar");
+        
+        ViewBag.Pregunta = Juego.ObtenerProximaPregunta() ?? new Pregunta();
+        ViewBag.Respuestas = Juego.ObtenerProximasRespuestas(ViewBag.Pregunta.IdPregunta) ?? new List<Respuesta>();
+
+        return View(ViewBag.Pregunta.IdPregunta == -1 ? "Fin" : "Pregunta");
     }
 
     [HttpPost]
@@ -37,9 +42,18 @@ public class HomeController : Controller
         return View("Respuesta");
     }
 
-    public IActionResult Fin(){
-        ViewBag.Username = Juego.Username;
-        ViewBag.PuntajeActual = Juego.PuntajeActual;
+    public IActionResult AñadirPregunta(){
+        ViewBag.Categorias = BD.ObtenerCategorias();
+        ViewBag.Dificultades = BD.ObtenerDificultades();
         return View();
+    }
+
+    [HttpPost]
+    public IActionResult Login(string Username, string Password, int IdDificultad, int IdCategoria, string PrEnunciado, string PrFoto){
+        if(!BD.Autenticado(Username, Password)) return View("Index");
+
+        Pregunta pregunta = new(IdCategoria, IdDificultad, PrEnunciado, PrFoto);
+
+        return View("AñadirPregunta");
     }
 }

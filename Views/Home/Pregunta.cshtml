@@ -6,8 +6,9 @@
 <div class="text-center">
     <p>Tu nombre de usuario: @ViewBag.Username | Tu puntaje actual: @ViewBag.PuntajeActual</p>
     <p>Pregunta N°@ViewBag.Progreso</p>
-    @if(ViewBag.Pregunta.Foto != ""){
-        <img src="@ViewBag.Pregunta.Foto" alt="Foto de la pregunta">
+    <h2>@ViewBag.Pregunta.Enunciado</h2>
+    @if(!string.IsNullOrEmpty(ViewBag.Pregunta.Foto)){
+        <img src="@ViewBag.Pregunta.Foto" alt="Foto de la pregunta" width="20%">
     }
 
     <form method="POST" action='@Url.Action("VerificarRespuesta", "Home")'>
@@ -19,11 +20,13 @@
                 @foreach(Respuesta respuesta in ViewBag.Respuestas){
                     ContadorFilas++;
                     <div class="Respuesta col">
-                        @if(respuesta.Foto != ""){
-                            <img src="@respuesta.Foto" alt="Foto de la respuesta" width="5%">
-                        }
-                        <input id="@respuesta.IdRespuesta" type="radio" name="IdRespuesta" value="@respuesta.IdRespuesta">
-                        <label for="@respuesta.IdRespuesta">@respuesta.Contenido</label><br>
+                        <label>
+                            @if(respuesta.Foto != ""){
+                                <img src="@respuesta.Foto" alt="Foto de la respuesta">
+                            }
+                            <input required="required" id="@respuesta.IdRespuesta" type="radio" name="IdRespuesta" value="@respuesta.IdRespuesta">
+                            <label for="@respuesta.IdRespuesta">@respuesta.Contenido</label><br>
+                        </label>
                     </div>
 
                     @if(ContadorFilas % 2 == 0){
@@ -33,6 +36,6 @@
                 }
             </div>
         </div>
-        <button>Enviar</button>
+        <button class="btn btn-primary">Enviar</button>
     </form>
 </div>

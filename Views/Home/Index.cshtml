@@ -1,13 +1,14 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Preguntados - Juega Ahora";
 }
 
-<div class="text-center">
-    <img src="~/img/logo.jfif" alt="Logo">
-    <h1>Preguntados</h1>
+<div class="landing-container">
+    <img src="~/img/logo.jfif" alt="Logo Respondidos" class="logo">
+    
+    <h1>Respondidos</h1>
     <p>¡Poné a prueba tus conocimientos!</p>
 
     <a href='@Url.Action("ConfigurarJuego", "Home")'>
-        <button>Jugá ya</button>
+        <button class="BotonJugar">Jugá ya</button>
     </a>
 </div>

@@ -1,7 +1,7 @@
 public static class Juego{
     public static string Username {get; private set;} = "";
     public static int PuntajeActual {get; private set;}
-    public static int Progreso {get; private set;} = 0;
+    public static int Progreso {get; private set;}
     private static int cantidadPreguntasCorrectas;
     private static List<Pregunta> Preguntas = new();
     private static List<Respuesta> Respuestas = new();
@@ -10,7 +10,7 @@ public static class Juego{
         Username = "";
         PuntajeActual = 0;
         cantidadPreguntasCorrectas = 0;
-        Progreso = 0;
+        Progreso = 1;
         Preguntas = new();
         Respuestas = new();
     }
@@ -27,7 +27,8 @@ public static class Juego{
         Progreso++;
         return Preguntas[new Random().Next(0, Preguntas.Count)];
     }
-    public static List<Respuesta> ObtenerProximasRespuestas(int IdPregunta) => BD.ObtenerRespuestas(IdPregunta);
+
+    public static List<Respuesta> ObtenerProximasRespuestas(int IdPregunta) => IdPregunta == -1 ? null : BD.ObtenerRespuestas(IdPregunta);
 
     public static bool VerificarRespuesta(int IdPregunta, int IdRespuesta){
         Respuesta? respuesta = BD.ObtenerRespuesta(IdPregunta, IdRespuesta);

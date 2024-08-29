@@ -4,13 +4,27 @@
 
 <div style="background-color: blue;">
     @if(ViewBag.EsCorrecta){
-        <p>¡Respuesta correcta!</p>
+        <script>
+            Swal.fire({
+                title: "¡Buen trabajo, sigue así!",
+                text: "La respuesta fue correcta",
+                icon: "success",
+                background: "#d4edda",  // Fondo verde claro
+                color: "#155724",  // Texto en verde oscuro
+                confirmButtonColor: "#28a745"  // Botón de confirmación verde
+            }).then(() => location = '@Url.Action("Jugar", "Home")');
+        </script>
     }
     else{
-        <p>Respuesta incorrecta...
-        La respuesta correcta era: @ViewBag.RespuestaCorrecta.Contenido
-        </p>
+        <script>
+            Swal.fire({
+                icon: "error",
+                title: "Upss...",
+                text: "La respuesta que has hecho es incorrecta",
+                background: "#f8d7da",
+                color: "#721c24",
+                confirmButtonColor: "#dc3545"
+            }).then(() => location = '@Url.Action("Jugar", "Home")');
+        </script>
     }
-
-    <a href='@Url.Action("Jugar", "Home")'>Siguiente pregunta</a>
 </div>
