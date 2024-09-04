@@ -63,16 +63,16 @@ public static class BD{
         return con.QueryFirstOrDefault<object>("SELECT * FROM Usuarios WHERE Nombre=@pUsuario AND Password=@pPassword", new{pUsuario=Usuario, pPassword=Password}) != null;
     }
 
-    public static void AñadirPregunta(Pregunta pregunta, Respuesta[] respuestas){
+    public static void AñadirPregunta(Pregunta pregunta, List<Respuesta> respuestas){
         using SqlConnection con = new(ConnectionString);
         con.Execute("INSERT INTO Preguntas(IdCategoria, IdDificultad, Enunciado, Foto) VALUES(@pIdCategoria, @pIdDificultad, @pEnunciado, @pFoto)",
         new{pIdCategoria=pregunta.IdCategoria, pIdDificultad=pregunta.IdDificultad, pEnunciado=pregunta.Enunciado, pFoto=pregunta.Foto});
 
         int IdPregunta = con.Query<int>("SELECT IdPregunta FROM Preguntas").ToArray().Max(); // Es un campo autonumérico, de todos los IDs, el más grande es el más recientemente agregado
 
-        for(int i = 0; i < respuestas.Length; i++){
-            con.Execute("INSERT INTO Respuestas(IdPregunta, Opcion, Contenido, Correcta, Foto) VALUES(@pIdPregunta, @pOpcion, @pContenido, @pCorrecta, @pFoto)",
-            new{pIdPregunta=IdPregunta, pOpcion=i+1, pContenido=respuestas[i].Contenido, pCorrecta=respuestas[i].Correcta, pFoto=respuestas[i].Foto});
+        foreach(var respuesta in respuestas){
+            con.Execute("INSERT INTO Respuestas(IdPregunta, Opcion, Contenido, Correcta) VALUES(@pIdPregunta, @pOpcion, @pContenido, @pCorrecta)",
+            new{pIdPregunta=IdPregunta, pOpcion=respuesta.Opcion, pContenido=respuesta.Contenido, pCorrecta=respuesta.Correcta});
         }
     }
 }

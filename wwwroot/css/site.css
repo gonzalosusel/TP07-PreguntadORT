@@ -23,6 +23,7 @@ body {
   background-color: #131314;
   color: #fff;
   font-family: Roboto;
+  margin-bottom: 5%;
 }
 
 .logo{
@@ -143,7 +144,7 @@ body {
   background: linear-gradient(45deg, #2a2d3c, #43348d);
 }
 
-.Respuesta:focus-visible{
+.Respuesta:focus{
   background: linear-gradient(45deg, #212124, #2e2c38);
 }
 

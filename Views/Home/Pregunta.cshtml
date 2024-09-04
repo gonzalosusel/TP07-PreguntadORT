@@ -21,9 +21,6 @@
                     ContadorFilas++;
                     <div class="Respuesta col">
                         <label>
-                            @if(respuesta.Foto != ""){
-                                <img src="@respuesta.Foto" alt="Foto de la respuesta">
-                            }
                             <input required="required" id="@respuesta.IdRespuesta" type="radio" name="IdRespuesta" value="@respuesta.IdRespuesta">
                             <label for="@respuesta.IdRespuesta">@respuesta.Contenido</label><br>
                         </label>

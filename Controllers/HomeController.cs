@@ -49,11 +49,17 @@ public class HomeController : Controller
     }
 
     [HttpPost]
-    public IActionResult Login(string Username, string Password, int IdDificultad, int IdCategoria, string PrEnunciado, string PrFoto){
-        if(!BD.Autenticado(Username, Password)) return View("Index");
-
+    public IActionResult GuardarPreguntaAñadida(string Username, string Password, int IdDificultad, int IdCategoria, string PrEnunciado, string PrFoto, string ContenidoR1, string ContenidoR2, string ContenidoR3, string ContenidoR4, int RCorrecta){
+        if(!BD.Autenticado(Username, Password)) return Redirect(Url.Action("Index", "Home"));;
         Pregunta pregunta = new(IdCategoria, IdDificultad, PrEnunciado, PrFoto);
+        List<Respuesta> respuestas = new();
+        string[] Enunciados = {ContenidoR1, ContenidoR2, ContenidoR3, ContenidoR4};
+        for(int i = 0; i < 4; i++){
+            Respuesta respuesta = new(-1, -1, i + 1, Enunciados[i], i + 1 == RCorrecta);
+            respuestas.Add(respuesta);
+        }
 
-        return View("AñadirPregunta");
+        BD.AñadirPregunta(pregunta, respuestas);
+        return Redirect(Url.Action("AñadirPregunta", "Home"));
     }
 }

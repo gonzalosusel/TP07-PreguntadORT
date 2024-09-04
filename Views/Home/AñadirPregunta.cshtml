@@ -3,18 +3,17 @@
 }
 
 <div>
-    <form method="POST" action='@Url.Action("AñadirPregunta", "Home")'>
+    <form method="POST" action='@Url.Action("GuardarPreguntaAñadida", "Home")'>
+        <label>Datos del admin</label>
         <div class="form-group">
-            <input required="required" class="form-control" type="text" name="Username" placeholder="Nombre de usuario"><br>
+            <input maxlength="50" required="required" class="form-control" type="text" name="Username" placeholder="Nombre de usuario"><br>
         </div>
 
         <div class="form-group">
-            <input required="required" class="form-control" type="password" name="Password" placeholder="Contraseña"><br>
+            <input maxlength="255" required="required" class="form-control" type="password" name="Password" placeholder="Contraseña"><br>
         </div>
 
-        <!-- IdCategoria, IdDificultad;
-    public string Enunciado, Foto;-->
-
+        <label>Pregunta</label>
         <div class="form-group">
             <select class="form-control" required="required" name="IdDificultad">
                 @foreach(Dificultad dificultad in ViewBag.Dificultades){
@@ -32,7 +31,32 @@
         </div>
 
         <div class="form-group">
-            <input required="required" class="form-control" type="text" name="PrFoto" placeholder="Foto"><br>
+            <input required="required" maxlength="500" class="form-control" type="text" name="PrFoto" placeholder="Foto"><br>
+        </div>
+
+        <div class="form-group">
+            <textarea name="PrEnunciado" maxlength="250" placeholder="Enunciado de la pregunta" class="form-control"></textarea><br>
+        </div>
+
+        <label>Respuestas</label>
+        <div class="form-group">
+            <input maxlength="50" required="required" name="ContenidoR1" placeholder="Enunciado de la respuesta 1" type="text" class="form-control"><br>
+        </div>
+
+        <div class="form-group">
+            <input maxlength="50" required="required" name="ContenidoR2" placeholder="Enunciado de la respuesta 2" type="text" class="form-control"><br>
+        </div>
+        
+        <div class="form-group">
+            <input maxlength="50" required="required" name="ContenidoR3" placeholder="Enunciado de la respuesta 3" type="text" class="form-control"><br>
+        </div>
+        
+        <div class="form-group">
+            <input maxlength="50" required="required" name="ContenidoR4" placeholder="Enunciado de la respuesta 4" type="text" class="form-control"><br>
+        </div>
+
+        <div class="form-group">
+            <input min="1" max="4" name="RCorrecta" type="number" required="required"  placeholder="Número de respuesta correcta" class="form-control"><br>
         </div>
 
         <button type="submit" class="btn btn-primary">Enviar</button>
