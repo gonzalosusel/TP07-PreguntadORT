@@ -20,13 +20,13 @@ public class HomeController : Controller
     }
 
     public IActionResult Comenzar(string Username, int IdDificultad, int IdCategoria){
-        if(!Juego.CargarPartida(Username, IdDificultad, IdCategoria)) return Redirect(Url.Action("ConfigurarJuego", "Home"));
-        return Redirect(Url.Action("Jugar", "Home"));
+        if(!Juego.CargarPartida(Username, IdDificultad, IdCategoria)) return Redirect(Url.Action("ConfigurarJuego", "Home") ?? "");
+        return Redirect(Url.Action("Jugar", "Home") ?? "");
     }
 
     public IActionResult Jugar(){
         // Si esta view se abrió directamente y sin pasar por el formulario, volver al formulario
-        if(ViewBag.Username == "") return Redirect(Url.Action("ConfigurarJuego", "Home"));
+        if(ViewBag.Username == "") return Redirect(Url.Action("ConfigurarJuego", "Home") ?? "");
 
         ViewBag.Username = Juego.Username;
         ViewBag.PuntajeActual = Juego.PuntajeActual;
@@ -35,7 +35,7 @@ public class HomeController : Controller
         ViewBag.Pregunta = Juego.ObtenerProximaPregunta() ?? new Pregunta();
         ViewBag.Respuestas = Juego.ObtenerProximasRespuestas(ViewBag.Pregunta.IdPregunta);
 
-        if(ViewBag.Pregunta.IdPregunta == -1) return Redirect(Url.Action("Fin", "Home"));
+        if(ViewBag.Pregunta.IdPregunta == -1) return Redirect(Url.Action("Fin", "Home") ?? "");
         return View("Pregunta");
     }
 
@@ -60,7 +60,7 @@ public class HomeController : Controller
 
     [HttpPost]
     public IActionResult GuardarPreguntaAñadida(string Username, string Password, int IdDificultad, int IdCategoria, string PrEnunciado, string PrFoto, string ContenidoR1, string ContenidoR2, string ContenidoR3, string ContenidoR4, int RCorrecta){
-        if(!BD.Autenticado(Username, Password)) return Redirect(Url.Action("Index", "Home"));
+        if(!BD.Autenticado(Username, Password)) return Redirect(Url.Action("Index", "Home") ?? "");
         Pregunta pregunta = new(IdCategoria, IdDificultad, PrEnunciado, PrFoto);
         List<Respuesta> respuestas = new();
         string[] Enunciados = {ContenidoR1, ContenidoR2, ContenidoR3, ContenidoR4};
@@ -70,6 +70,6 @@ public class HomeController : Controller
         }
 
         BD.AñadirPregunta(pregunta, respuestas);
-        return Redirect(Url.Action("AñadirPregunta", "Home"));
+        return Redirect(Url.Action("AñadirPregunta", "Home") ?? "");
     }
 }
