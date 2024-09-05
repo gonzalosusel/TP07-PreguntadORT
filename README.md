@@ -1,4 +1,5 @@
 [Preguntas](https://www.cosmopolitan.com/es/consejos-planes/familia-amigos/a37021139/trivial-mejores-preguntas-jugar/)
+[Preguntas 2](https://www.todamateria.com/preguntas-de-cultura-general/)
 
 # BD
 create procedure cargarpregunta
