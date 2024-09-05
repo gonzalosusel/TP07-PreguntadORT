@@ -1,6 +1,6 @@
 [Preguntas](https://www.cosmopolitan.com/es/consejos-planes/familia-amigos/a37021139/trivial-mejores-preguntas-jugar/)
 
-#BD
+# BD
 create procedure cargarpregunta
 @categoria varchar(20),
 @dificultad varchar(20),
