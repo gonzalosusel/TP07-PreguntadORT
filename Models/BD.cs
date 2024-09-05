@@ -13,6 +13,11 @@ public static class BD{
         return con.Query<Dificultad>("SELECT * FROM Dificultades").ToList();
     }
 
+    public static int ObtenerDificultadDePregunta(int IdPregunta){
+        using SqlConnection con = new(ConnectionString);
+        return con.QueryFirstOrDefault<int>("select Puntaje from Preguntas left join Dificultades on Preguntas.IdDificultad=Dificultades.IdDificultad where IdPregunta=@pIdPregunta;", new{pIdPregunta=IdPregunta});
+    }
+
     public static List<Pregunta> ObtenerPreguntas(int IdDificultad, int IdCategoria){
         using SqlConnection con = new(ConnectionString);
         List<Pregunta> Datos;

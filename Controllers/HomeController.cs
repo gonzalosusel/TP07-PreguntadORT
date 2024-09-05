@@ -19,11 +19,14 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult Jugar(string? Username, int IdDificultad, int IdCategoria){
-        // Volver al formulario de inicio si:
-        // Se envió un nombre de usuario y hubo un fallo al guardarlo
-        // O el juego no tiene ningún nombre de usuario registrado (En caso de que alguien intente abrir la view directamente)
-        if((!string.IsNullOrEmpty(Username) && !Juego.CargarPartida(Username, IdDificultad, IdCategoria)) || Juego.Username == "") return View("ConfigurarJuego");
+    public IActionResult Comenzar(string? Username, int IdDificultad, int IdCategoria){
+        if(!Juego.CargarPartida(Username, IdDificultad, IdCategoria)) return Redirect(Url.Action("ConfigurarJuego", "Home"));
+        return Redirect(Url.Action("Jugar", "Home"));
+    }
+
+    public IActionResult Jugar(){
+        // Si esta view se abrió directamente y sin pasar por el formulario, volver al formulario
+        if(ViewBag.Username == "") return Redirect(Url.Action("ConfigurarJuego", "Home"));
 
         ViewBag.Username = Juego.Username;
         ViewBag.PuntajeActual = Juego.PuntajeActual;

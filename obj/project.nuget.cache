@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "L6+sk7n3bu7MPRS3SGEGfklp4b35zWa8R/O36VMhOIomfV8PRlc7jWRMSxtR4cKKtHj9w5WAMxUgzXN0+/UFcw==",
+  "dgSpecHash": "5udIDuMiWc2JIHCNGhhyOhR150r/9/gTzKRqG5oFT0id3NPgCqzIWSyJGuePGrEqgLM/XkUM8ec3U5U8oHRAMQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\devandroid\\Downloads\\TP07-PreguntadORT\\TP_PreguntadORT.csproj",
   "expectedPackageFiles": [
@@ -27,7 +27,11 @@
     "C:\\Users\\devandroid\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.1\\system.runtime.compilerservices.unsafe.4.5.1.nupkg.sha512",
     "C:\\Users\\devandroid\\.nuget\\packages\\system.security.accesscontrol\\4.7.0\\system.security.accesscontrol.4.7.0.nupkg.sha512",
     "C:\\Users\\devandroid\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512",
-    "C:\\Users\\devandroid\\.nuget\\packages\\system.text.encodings.web\\4.5.0\\system.text.encodings.web.4.5.0.nupkg.sha512"
+    "C:\\Users\\devandroid\\.nuget\\packages\\system.text.encodings.web\\4.5.0\\system.text.encodings.web.4.5.0.nupkg.sha512",
+    "C:\\Users\\devandroid\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.20\\microsoft.netcore.app.ref.7.0.20.nupkg.sha512",
+    "C:\\Users\\devandroid\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.20\\microsoft.windowsdesktop.app.ref.7.0.20.nupkg.sha512",
+    "C:\\Users\\devandroid\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.20\\microsoft.aspnetcore.app.ref.7.0.20.nupkg.sha512",
+    "C:\\Users\\devandroid\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\7.0.20\\microsoft.netcore.app.host.win-x64.7.0.20.nupkg.sha512"
   ],
   "logs": []
 }

@@ -37,7 +37,7 @@ public static class Juego{
 
         if(EsCorrecta){
             cantidadPreguntasCorrectas++;
-            PuntajeActual += 3;
+            PuntajeActual += BD.ObtenerDificultadDePregunta(IdPregunta);
         }
 
         Preguntas.RemoveAll(pregunta => pregunta.IdPregunta == IdPregunta);
