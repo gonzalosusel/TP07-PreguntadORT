@@ -28,7 +28,7 @@ public static class Juego{
         return Preguntas[new Random().Next(0, Preguntas.Count)];
     }
 
-    public static List<Respuesta> ObtenerProximasRespuestas(int IdPregunta) => IdPregunta == -1 ? null : BD.ObtenerRespuestas(IdPregunta);
+    public static List<Respuesta> ObtenerProximasRespuestas(int IdPregunta) => IdPregunta == -1 ? new List<Respuesta>() : BD.ObtenerRespuestas(IdPregunta);
 
     public static bool VerificarRespuesta(int IdPregunta, int IdRespuesta){
         Respuesta? respuesta = BD.ObtenerRespuesta(IdPregunta, IdRespuesta);
@@ -37,7 +37,7 @@ public static class Juego{
 
         if(EsCorrecta){
             cantidadPreguntasCorrectas++;
-            PuntajeActual += BD.ObtenerDificultadDePregunta(IdPregunta);
+            PuntajeActual += BD.ObtenerPuntajeDePregunta(IdPregunta);
         }
 
         Preguntas.RemoveAll(pregunta => pregunta.IdPregunta == IdPregunta);

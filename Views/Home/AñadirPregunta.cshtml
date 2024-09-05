@@ -6,11 +6,11 @@
     <form method="POST" action='@Url.Action("GuardarPreguntaAñadida", "Home")'>
         <label>Datos del admin</label>
         <div class="form-group">
-            <input maxlength="50" required="required" class="form-control" type="text" name="Username" placeholder="Nombre de usuario"><br>
+            <input autocomplete="off" maxlength="50" required="required" class="form-control" type="text" name="Username" placeholder="Nombre de usuario"><br>
         </div>
 
         <div class="form-group">
-            <input maxlength="255" required="required" class="form-control" type="password" name="Password" placeholder="Contraseña"><br>
+            <input autocomplete="off" maxlength="255" required="required" class="form-control" type="password" name="Password" placeholder="Contraseña"><br>
         </div>
 
         <label>Pregunta</label>
@@ -31,7 +31,7 @@
         </div>
 
         <div class="form-group">
-            <input required="required" maxlength="500" class="form-control" type="text" name="PrFoto" placeholder="Foto"><br>
+            <input autocomplete="off" required="required" maxlength="500" class="form-control" type="text" name="PrFoto" placeholder="Foto"><br>
         </div>
 
         <div class="form-group">
@@ -39,21 +39,11 @@
         </div>
 
         <label>Respuestas</label>
-        <div class="form-group">
-            <input maxlength="50" required="required" name="ContenidoR1" placeholder="Enunciado de la respuesta 1" type="text" class="form-control"><br>
-        </div>
-
-        <div class="form-group">
-            <input maxlength="50" required="required" name="ContenidoR2" placeholder="Enunciado de la respuesta 2" type="text" class="form-control"><br>
-        </div>
-        
-        <div class="form-group">
-            <input maxlength="50" required="required" name="ContenidoR3" placeholder="Enunciado de la respuesta 3" type="text" class="form-control"><br>
-        </div>
-        
-        <div class="form-group">
-            <input maxlength="50" required="required" name="ContenidoR4" placeholder="Enunciado de la respuesta 4" type="text" class="form-control"><br>
-        </div>
+        @for(int i = 1; i < 5; i++){
+            <div class="form-group">
+                <input autocomplete="off" maxlength="50" required="required" name="ContenidoR@i" placeholder="Enunciado de la respuesta @i" type="text" class="form-control"><br>
+            </div>
+        }
 
         <div class="form-group">
             <input min="1" max="4" name="RCorrecta" type="number" required="required"  placeholder="Número de respuesta correcta" class="form-control"><br>

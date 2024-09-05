@@ -1,6 +1,6 @@
 public class Pregunta{
     public int IdPregunta = -1, IdCategoria, IdDificultad;
-    public string Enunciado, Foto;
+    public string? Enunciado, Foto;
 
     public Pregunta(){}
 

@@ -19,7 +19,7 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult Comenzar(string? Username, int IdDificultad, int IdCategoria){
+    public IActionResult Comenzar(string Username, int IdDificultad, int IdCategoria){
         if(!Juego.CargarPartida(Username, IdDificultad, IdCategoria)) return Redirect(Url.Action("ConfigurarJuego", "Home"));
         return Redirect(Url.Action("Jugar", "Home"));
     }
@@ -33,9 +33,16 @@ public class HomeController : Controller
         ViewBag.Progreso = Juego.Progreso;
         
         ViewBag.Pregunta = Juego.ObtenerProximaPregunta() ?? new Pregunta();
-        ViewBag.Respuestas = Juego.ObtenerProximasRespuestas(ViewBag.Pregunta.IdPregunta) ?? new List<Respuesta>();
+        ViewBag.Respuestas = Juego.ObtenerProximasRespuestas(ViewBag.Pregunta.IdPregunta);
 
-        return View(ViewBag.Pregunta.IdPregunta == -1 ? "Fin" : "Pregunta");
+        if(ViewBag.Pregunta.IdPregunta == -1) return Redirect(Url.Action("Fin", "Home"));
+        return View("Pregunta");
+    }
+
+    public IActionResult Fin(){
+        ViewBag.Username = Juego.Username;
+        ViewBag.PuntajeActual = Juego.PuntajeActual;
+        return View();
     }
 
     [HttpPost]
@@ -53,7 +60,7 @@ public class HomeController : Controller
 
     [HttpPost]
     public IActionResult GuardarPreguntaAñadida(string Username, string Password, int IdDificultad, int IdCategoria, string PrEnunciado, string PrFoto, string ContenidoR1, string ContenidoR2, string ContenidoR3, string ContenidoR4, int RCorrecta){
-        if(!BD.Autenticado(Username, Password)) return Redirect(Url.Action("Index", "Home"));;
+        if(!BD.Autenticado(Username, Password)) return Redirect(Url.Action("Index", "Home"));
         Pregunta pregunta = new(IdCategoria, IdDificultad, PrEnunciado, PrFoto);
         List<Respuesta> respuestas = new();
         string[] Enunciados = {ContenidoR1, ContenidoR2, ContenidoR3, ContenidoR4};
