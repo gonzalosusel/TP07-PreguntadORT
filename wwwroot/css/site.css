@@ -1,5 +1,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Nerko+One&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500&display=swap'); 
 
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: scale(0.9);
+  }
+  to {
+      opacity: 1;
+      transform: scale(1);
+  }
+}
+
+@keyframes bounceIn {
+  from {
+      transform: translateY(0);
+  }
+  to {
+      transform: translateY(-15px);
+  }
+}
+
+@keyframes move {
+  to {
+    right: 100%;
+    transform: translate(0);
+  }
+}
+
 html {
   font-size: 14px;
 }
@@ -31,17 +58,6 @@ body {
   border-radius: 50%; 
 }
 
-@keyframes fadeIn {
-  from {
-      opacity: 0;
-      transform: scale(0.9);
-  }
-  to {
-      opacity: 1;
-      transform: scale(1);
-  }
-}
-
 .landing-container {
   text-align: center;
   padding: 50px;
@@ -58,15 +74,6 @@ body {
   height: auto;
   margin-bottom: 30px;
   animation: bounceIn 1.5s ease-in-out infinite alternate;
-}
-
-@keyframes bounceIn {
-  from {
-      transform: translateY(0);
-  }
-  to {
-      transform: translateY(-15px);
-  }
 }
 
 .landing-container h1 {
@@ -131,6 +138,7 @@ body {
   padding: 10px 0;
   width: 100%;
   margin-top: auto;
+  height: 100px;
 }
 
 .Respuesta{
@@ -155,4 +163,11 @@ body {
 
 .Respuesta label input{
   appearance: none;
+}
+
+.categoria-ruleta, .categoria-elegida-ruleta{
+  position: absolute;
+  font-size: 20px;
+
+  animation: move 2s linear infinite;
 }

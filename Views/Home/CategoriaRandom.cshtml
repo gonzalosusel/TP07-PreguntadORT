@@ -1,0 +1,27 @@
+@{
+    ViewData["title"] = "¿Cuál será la categoría?";
+}
+
+<!-- Incluir script externo -->
+<script src="~/js/CategoriaRandomTexto.js"></script>
+
+<!-- Declarar variables -->
+<script>
+    let Categorias = [];
+    let CategoriaElegida = "@ViewBag.CategoriaElegida.Nombre";
+</script>
+
+<!-- Afuera del script, usar el foreach de razor porque sino falla (Sólo puede generar código de html, no de javascript) -->
+@foreach(var Categoria in ViewBag.CategoriasPendientes){
+    <script>
+        Categorias.push("@Categoria.Nombre");
+    </script>
+}
+
+<!-- Seguir haciendo cositas -->
+<script>
+let tempEl;
+
+Categorias.forEach(Categoria => CrearTextoRandom(Categoria));
+CrearTextoRandom(CategoriaElegida, true);
+</script>

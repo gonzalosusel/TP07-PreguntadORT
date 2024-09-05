@@ -5,6 +5,7 @@ public static class Juego{
     private static int cantidadPreguntasCorrectas;
     private static List<Pregunta> Preguntas = new();
     private static List<Respuesta> Respuestas = new();
+    public static bool TodasLasCategorias = false;
  
     public static void InicializarJuego(){
         Username = "";
@@ -22,8 +23,24 @@ public static class Juego{
         return Preguntas.Count > 0;
     }
 
-    public static Pregunta? ObtenerProximaPregunta(){
-        if(Preguntas.Count == 0) return null;
+    // Recibir lista de cada categoría de cada pregunta que aún se puede responder
+    public static List<Categoria> ObtenerCategoriasPendientes(){
+        List<Categoria> Categorias = new();
+        List<int> Usadas = new();
+        Categoria? CategoriaActual;
+
+        foreach(Pregunta pregunta in Preguntas){
+            CategoriaActual = BD.ObtenerCategoria(pregunta.IdCategoria);
+            // Evitar el añadir valores nulos o repetidos
+            if(CategoriaActual != null && !Usadas.Contains(CategoriaActual.IdCategoria)) Categorias.Add(CategoriaActual);
+            Usadas.Add(CategoriaActual!.IdCategoria);
+        }
+
+        return Categorias;
+    }
+
+    public static Pregunta ObtenerProximaPregunta(){
+        if(Preguntas.Count == 0) return new Pregunta();
         Progreso++;
         return Preguntas[new Random().Next(0, Preguntas.Count)];
     }

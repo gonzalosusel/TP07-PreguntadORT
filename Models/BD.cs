@@ -8,6 +8,11 @@ public static class BD{
         return con.Query<Categoria>("SELECT * FROM Categorias").ToList();
     }
 
+    public static Categoria? ObtenerCategoria(int IdCategoria){
+        using SqlConnection con = new(ConnectionString);
+        return con.QueryFirstOrDefault<Categoria>("SELECT * FROM Categorias WHERE IdCategoria=@pIdCategoria", new{pIdCategoria=IdCategoria});
+    }
+
     public static List<Dificultad> ObtenerDificultades(){
         using SqlConnection con = new(ConnectionString);
         return con.Query<Dificultad>("SELECT * FROM Dificultades").ToList();
