@@ -16,20 +16,26 @@
 }
 
 <h1 id="Categoria"></h1>
-<script>
-    const VecesQuePasaLaCategoriaCorrecta = 5; // valor trivial, puede ser cualquiera
+<script type="module">
+    const VecesQuePasaLaCategoriaCorrecta = 3; // valor trivial, puede ser cualquiera
 
     const TextoCategoria = document.querySelector("#Categoria");
     let CantidadVecesAparecioElegida = 0;
     let Pasando = true;
 
     let Index = 0;
-
+    let TiempoEntreCambio = 700;
     while(Pasando){
+        if(TiempoEntreCambio <= 200) TiempoEntreCambio = 200;
         if(Index >= Categorias.length) Index = 0;
-        TextoCategoria.InnerText = Categorias[Index++];
-
-        if(TextoCategoria.InnerText == CategoriaElegida) CantidadVecesAparecioElegida++;
+        TextoCategoria.innerText = Categorias[Index++];
+        if(TextoCategoria.innerText == CategoriaElegida) CantidadVecesAparecioElegida++;
         if(CantidadVecesAparecioElegida >= VecesQuePasaLaCategoriaCorrecta) Pasando = false;
+        await new Promise(r => setTimeout(r, TiempoEntreCambio));
+        TiempoEntreCambio -= 80;
     }
+
+    // Esperar un poco antes de pasar a la pregunta
+    await new Promise(r => setTimeout(r, 1000));
+    location.pathname = '@Url.Action("Jugar", "Home")';
 </script>

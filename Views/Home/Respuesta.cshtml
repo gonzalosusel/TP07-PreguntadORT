@@ -24,7 +24,7 @@
                 background: "#f8d7da",
                 color: "#721c24",
                 confirmButtonColor: "#dc3545"
-            }).then(() => location = '@Url.Action("Jugar", "Home")');
+            }).then(() => location = '@Url.Action(ViewBag.TodasLasCategorias ? "CategoriaRandom" : "Jugar", "Home")');
         </script>
     }
 </div>

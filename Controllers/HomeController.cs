@@ -45,6 +45,7 @@ public class HomeController : Controller
 
         return View();
     }
+    
     public IActionResult Jugar(){
         // Si esta view se abrió directamente y sin pasar por el formulario, volver al formulario
         if(ViewBag.Username == "") return Redirect(Url.Action("ConfigurarJuego", "Home") ?? "");
@@ -56,7 +57,7 @@ public class HomeController : Controller
         ViewBag.PuntajeActual = Juego.PuntajeActual;
         ViewBag.Progreso = Juego.Progreso;
         
-        ViewBag.Pregunta = Juego.ObtenerProximaPregunta();
+        ViewBag.Pregunta = Juego.TodasLasCategorias ? Juego.ObtenerProximaPregunta(IdCategoriaElegida) : Juego.ObtenerProximaPregunta();
         ViewBag.Respuestas = Juego.ObtenerProximasRespuestas(ViewBag.Pregunta.IdPregunta);
 
         if(ViewBag.Pregunta.IdPregunta == -1) return Redirect(Url.Action("Fin", "Home") ?? "");
@@ -73,6 +74,7 @@ public class HomeController : Controller
     public IActionResult VerificarRespuesta(int IdPregunta, int IdRespuesta){
         ViewBag.EsCorrecta = Juego.VerificarRespuesta(IdPregunta, IdRespuesta);
         ViewBag.RespuestaCorrecta = BD.ObtenerRespuestaCorrecta(IdPregunta);
+        ViewBag.TodasLasCategorias = Juego.TodasLasCategorias;
         return View("Respuesta");
     }
 

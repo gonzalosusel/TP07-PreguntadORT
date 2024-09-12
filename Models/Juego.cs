@@ -39,10 +39,20 @@ public static class Juego{
         return Categorias;
     }
 
-    public static Pregunta ObtenerProximaPregunta(){
-        if(Preguntas.Count == 0) return new Pregunta();
-        Progreso++;
-        return Preguntas[new Random().Next(0, Preguntas.Count)];
+    public static Pregunta ObtenerProximaPregunta(int IdCategoriaElegida = -1){
+        if(IdCategoriaElegida == -1){
+            if(Preguntas.Count == 0) return new Pregunta();
+            Progreso++;
+
+            return Preguntas[new Random().Next(0, Preguntas.Count)];
+        } else {
+            List<Pregunta> PreguntasCategoria = Preguntas.Where(pregunta => pregunta.IdCategoria == IdCategoriaElegida).ToList();
+            
+            if(PreguntasCategoria.Count == 0) return new Pregunta();
+            Progreso++;
+
+            return PreguntasCategoria[new Random().Next(0, PreguntasCategoria.Count)];
+        }
     }
 
     public static List<Respuesta> ObtenerProximasRespuestas(int IdPregunta) => IdPregunta == -1 ? new List<Respuesta>() : BD.ObtenerRespuestas(IdPregunta);
