@@ -2,9 +2,6 @@
     ViewData["title"] = "¿Cuál será la categoría?";
 }
 
-<!-- Incluir script externo -->
-<script src="~/js/CategoriaRandomTexto.js"></script>
-
 <!-- Declarar variables -->
 <script>
     let Categorias = [];
@@ -18,10 +15,21 @@
     </script>
 }
 
-<!-- Seguir haciendo cositas -->
+<h1 id="Categoria"></h1>
 <script>
-let tempEl;
+    const VecesQuePasaLaCategoriaCorrecta = 5; // valor trivial, puede ser cualquiera
 
-Categorias.forEach(Categoria => CrearTextoRandom(Categoria));
-CrearTextoRandom(CategoriaElegida, true);
+    const TextoCategoria = document.querySelector("#Categoria");
+    let CantidadVecesAparecioElegida = 0;
+    let Pasando = true;
+
+    let Index = 0;
+
+    while(Pasando){
+        if(Index >= Categorias.length) Index = 0;
+        TextoCategoria.InnerText = Categorias[Index++];
+
+        if(TextoCategoria.InnerText == CategoriaElegida) CantidadVecesAparecioElegida++;
+        if(CantidadVecesAparecioElegida >= VecesQuePasaLaCategoriaCorrecta) Pasando = false;
+    }
 </script>

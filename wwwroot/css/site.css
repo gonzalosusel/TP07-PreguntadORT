@@ -20,13 +20,6 @@
   }
 }
 
-@keyframes move {
-  to {
-    right: 100%;
-    transform: translate(0);
-  }
-}
-
 html {
   font-size: 14px;
 }
@@ -168,6 +161,4 @@ body {
 .categoria-ruleta, .categoria-elegida-ruleta{
   position: absolute;
   font-size: 20px;
-
-  animation: move 2s linear infinite;
 }

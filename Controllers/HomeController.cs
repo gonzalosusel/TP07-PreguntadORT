@@ -40,8 +40,6 @@ public class HomeController : Controller
         Categoria CategoriaElegida = CategoriasPendientes[new Random().Next(0, CategoriasPendientes.Count)];
         IdCategoriaElegida = CategoriaElegida.IdCategoria;
 
-        CategoriasPendientes.Remove(CategoriaElegida);
-
         ViewBag.CategoriasPendientes = CategoriasPendientes;
         ViewBag.CategoriaElegida = CategoriaElegida;
 
