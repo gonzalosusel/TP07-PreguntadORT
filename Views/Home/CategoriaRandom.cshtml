@@ -28,9 +28,6 @@
     let Index = 0;
     let TiempoEntreCambio = 700;
 
-    var audiocelestial = new Audio('/audio/sonido_celestial.mp3');
-    document.onclick = () => audiocelestial.play();
-
     while(Pasando){
         if(TiempoEntreCambio <= 200) TiempoEntreCambio = 200;
         if(Index >= Categorias.length) Index = 0;
