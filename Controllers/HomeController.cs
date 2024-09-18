@@ -56,11 +56,18 @@ public class HomeController : Controller
         ViewBag.Username = Juego.Username;
         ViewBag.PuntajeActual = Juego.PuntajeActual;
         ViewBag.Progreso = Juego.Progreso;
+
+        Juego.Tiempo = Juego.DefaultTiempo; // Al principio de cada pregunta poner el timer en 60.000 milisegundos
+        ViewBag.Tiempo = Juego.Tiempo;
         
         ViewBag.Pregunta = Juego.TodasLasCategorias ? Juego.ObtenerProximaPregunta(IdCategoriaElegida) : Juego.ObtenerProximaPregunta();
         ViewBag.Respuestas = Juego.ObtenerProximasRespuestas(ViewBag.Pregunta.IdPregunta);
 
-        if(ViewBag.Pregunta.IdPregunta == -1) return Redirect(Url.Action("Fin", "Home") ?? "");
+        if(ViewBag.Pregunta.IdPregunta == -1){
+            BD.AñadirPuntaje(new PuntajeUsuario(DateTime.Now, Juego.Username, Juego.PuntajeActual));
+            return Redirect(Url.Action("Fin", "Home") ?? "");
+        }
+
         return View("Pregunta");
     }
 
@@ -71,10 +78,11 @@ public class HomeController : Controller
     }
 
     [HttpPost]
-    public IActionResult VerificarRespuesta(int IdPregunta, int IdRespuesta){
-        ViewBag.EsCorrecta = Juego.VerificarRespuesta(IdPregunta, IdRespuesta);
+    public IActionResult VerificarRespuesta(int IdPregunta, int IdRespuesta, int TiempoRestante){
+        ViewBag.EsCorrecta = Juego.VerificarRespuesta(IdPregunta, IdRespuesta, TiempoRestante);
         ViewBag.RespuestaCorrecta = BD.ObtenerRespuestaCorrecta(IdPregunta);
         ViewBag.TodasLasCategorias = Juego.TodasLasCategorias;
+
         return View("Respuesta");
     }
 
@@ -95,7 +103,12 @@ public class HomeController : Controller
             respuestas.Add(respuesta);
         }
 
-        BD.AñadirPregunta(pregunta, respuestas);
+        BD.CrearPregunta(pregunta, respuestas);
         return Redirect(Url.Action("AñadirPregunta", "Home") ?? "");
+    }
+
+    public IActionResult HighScores(){
+        ViewBag.TablaPuntajes = BD.ObtenerTablaPuntajes();
+        return View();
     }
 }

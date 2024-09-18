@@ -73,7 +73,7 @@ public static class BD{
         return con.QueryFirstOrDefault<object>("SELECT * FROM Usuarios WHERE Nombre=@pUsuario AND Password=@pPassword", new{pUsuario=Usuario, pPassword=Password}) != null;
     }
 
-    public static void AñadirPregunta(Pregunta pregunta, List<Respuesta> respuestas){
+    public static void CrearPregunta(Pregunta pregunta, List<Respuesta> respuestas){
         using SqlConnection con = new(ConnectionString);
         con.Execute("INSERT INTO Preguntas(IdCategoria, IdDificultad, Enunciado, Foto) VALUES(@pIdCategoria, @pIdDificultad, @pEnunciado, @pFoto)",
         new{pIdCategoria=pregunta.IdCategoria, pIdDificultad=pregunta.IdDificultad, pEnunciado=pregunta.Enunciado, pFoto=pregunta.Foto});
@@ -84,5 +84,16 @@ public static class BD{
             con.Execute("INSERT INTO Respuestas(IdPregunta, Opcion, Contenido, Correcta) VALUES(@pIdPregunta, @pOpcion, @pContenido, @pCorrecta)",
             new{pIdPregunta=IdPregunta, pOpcion=respuesta.Opcion, pContenido=respuesta.Contenido, pCorrecta=respuesta.Correcta});
         }
+    }
+
+    public static List<PuntajeUsuario> ObtenerTablaPuntajes(){
+        using SqlConnection con = new(ConnectionString);
+        return con.Query<PuntajeUsuario>("SELECT * FROM Puntajes").OrderByDescending(puntaje => puntaje.Puntaje).ToList() ?? new List<PuntajeUsuario>();
+    }
+
+    public static void AñadirPuntaje(PuntajeUsuario puntaje){
+        using SqlConnection con = new(ConnectionString);
+        con.Execute("INSERT INTO Puntajes(FechaHora, Username, Puntaje) VALUES(@pFechaHora, @pUsername, @pPuntaje)",
+        new{pFechaHora=puntaje.FechaHora, pUsername=puntaje.Username, pPuntaje=puntaje.Puntaje});
     }
 }

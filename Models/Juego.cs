@@ -6,7 +6,9 @@ public static class Juego{
     private static List<Pregunta> Preguntas = new();
     private static List<Respuesta> Respuestas = new();
     public static bool TodasLasCategorias = false;
- 
+    public static int Tiempo;
+    public const int DefaultTiempo = 60000;
+
     public static void InicializarJuego(){
         Username = "";
         PuntajeActual = 0;
@@ -14,6 +16,7 @@ public static class Juego{
         Progreso = 1;
         Preguntas = new();
         Respuestas = new();
+        Tiempo = DefaultTiempo;
     }
 
     public static bool CargarPartida(string _Username, int IdDificultad, int IdCategoria){
@@ -57,14 +60,14 @@ public static class Juego{
 
     public static List<Respuesta> ObtenerProximasRespuestas(int IdPregunta) => IdPregunta == -1 ? new List<Respuesta>() : BD.ObtenerRespuestas(IdPregunta);
 
-    public static bool VerificarRespuesta(int IdPregunta, int IdRespuesta){
+    public static bool VerificarRespuesta(int IdPregunta, int IdRespuesta, int TiempoRestante){
         Respuesta? respuesta = BD.ObtenerRespuesta(IdPregunta, IdRespuesta);
         if (respuesta == null) return false;
         bool EsCorrecta = respuesta.Correcta;
 
         if(EsCorrecta){
             cantidadPreguntasCorrectas++;
-            PuntajeActual += BD.ObtenerPuntajeDePregunta(IdPregunta);
+            PuntajeActual += (int) Math.Ceiling((double) BD.ObtenerPuntajeDePregunta(IdPregunta) * TiempoRestante / 100);
         }
 
         Preguntas.RemoveAll(pregunta => pregunta.IdPregunta == IdPregunta);

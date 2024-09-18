@@ -1,0 +1,29 @@
+@{
+    ViewData["title"] = "Tabla de puntajes";
+}
+
+<div class="text-center">
+    @if(ViewBag.TablaPuntajes.Count > 0){
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">Usuario</th>
+                    <th scope="col">Fecha y hora</th>
+                    <th scope="col">Puntaje</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach(PuntajeUsuario puntaje in ViewBag.TablaPuntajes){
+                    <tr>
+                        <td>@puntaje.Username</td>
+                        <td>@puntaje.FechaHora.ToString()</td>
+                        <td>@puntaje.Puntaje</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    } else {
+        <h2>Aún no hay puntajes...</h2>
+    }
+</div>

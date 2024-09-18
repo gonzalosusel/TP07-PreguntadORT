@@ -40,8 +40,9 @@
 
         <label>Respuestas</label>
         @for(int i = 1; i < 5; i++){
+            string Name = "ContenidoR" + @i;
             <div class="form-group">
-                <input autocomplete="off" maxlength="50" required="required" name="ContenidoR@i" placeholder="Enunciado de la respuesta @i" type="text" class="form-control"><br>
+                <input autocomplete="off" maxlength="50" required="required" name="@Name" placeholder="Enunciado de la respuesta @i" type="text" class="form-control"><br>
             </div>
         }
 

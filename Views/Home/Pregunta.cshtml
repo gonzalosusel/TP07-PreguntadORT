@@ -4,7 +4,7 @@
 }
 
 <div class="text-center">
-    <p>Tu nombre de usuario: @ViewBag.Username | Tu puntaje actual: @ViewBag.PuntajeActual</p>
+    <p>Tu nombre de usuario: @ViewBag.Username | Tu puntaje actual: @ViewBag.PuntajeActual | Tiempo restante: <span id="minutes"></span>:<span id="seconds"></span></p>
     <p>Pregunta N°@ViewBag.Progreso</p>
     <h2>@ViewBag.Pregunta.Enunciado</h2>
     @if(!string.IsNullOrEmpty(ViewBag.Pregunta.Foto)){
@@ -12,6 +12,7 @@
     }
 
     <form method="POST" action='@Url.Action("VerificarRespuesta", "Home")'>
+        <input id="TiempoRestante" name="TiempoRestante" type="hidden">
         <input type="hidden" name="IdPregunta" value="@ViewBag.Pregunta.IdPregunta"><br>
         <!-- Contenedor de la grilla -->
         <div class="container">
@@ -35,4 +36,29 @@
         </div>
         <button class="btn btn-primary">Enviar</button>
     </form>
+
+    <script src="~/js/countdown.js"></script>
+    <script>
+        const DATE_TARGET = Date.now() + @ViewBag.Tiempo;
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+        
+        let intervalID = setInterval(() => {
+            if(parseInt(document.querySelector('span#minutes').textContent) <= 0
+            && parseInt(document.querySelector('span#seconds').textContent) <= 0){
+                clearInterval(intervalID);
+                Swal.fire({
+                    title: "Upsi",
+                    text: "Se terminó el tiempo",
+                    icon: "error",
+                    background: "#f8d7da",
+                    color: "#721c24",
+                    confirmButtonColor: "#dc3545"
+                }).then(() => location = '@Url.Action("Jugar", "Home")');
+            }
+        }
+        
+
+        , 1000);
+    </script>
 </div>

@@ -5,12 +5,12 @@
 <div>
     <form method="POST" action='@Url.Action("Comenzar", "Home")'>
         <div class="form-group">
-            <input autocomplete="off" required="required" class="form-control" type="text" name="Username" placeholder="Nombre de usuario"><br>
+            <input autocomplete="off" maxlength="50" pattern=".*\S+.*" title="El nombre de usuario debe tener al menos un caracter y no puede ser un espacio en blanco" required="required" class="form-control" type="text" name="Username" placeholder="Nombre de usuario"><br>
         </div>
 
         <div class="form-group">
             <select class="form-control" required="required" name="IdDificultad">
-                <option value="-1">Todas</option>
+                <option value="-1">Todas las preguntas</option>
                 @foreach(Dificultad dificultad in ViewBag.Dificultades){
                     <option value="@dificultad.IdDificultad">@dificultad.Nombre</option>
                 }
@@ -19,7 +19,7 @@
 
         <div class="form-group">
             <select class="form-control" required="required" name="IdCategoria">
-                <option value="-1">Todas</option>
+                <option value="-1">Todas las categorías</option>
                 @foreach(Categoria categoria in ViewBag.Categorias){
                     <option value="@categoria.IdCategoria">@categoria.Nombre</option>
                 }
