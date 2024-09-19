@@ -18,8 +18,8 @@
         </div>
 
         <div class="form-group">
-            <input id="togglePwd" type="checkbox" onclick="toggle()">
-            <label for="togglePwd">Mostrar contraseña</label>
+            <input id="togglepwd" type="checkbox" onclick="toggle()">
+            <label for="togglepwd">Mostrar contraseña</label>
         </div>
 
         <button type="submit" class="btn btn-primary">Enviar</button>
@@ -29,11 +29,11 @@
 
     <script>
         function toggle() {
-            var x = document.querySelector("#Password");
-            if (x.type === "password")
-                x.type = "text";
+            var Password = document.querySelector("#Password");
+            if (Password.type === "password")
+                Password.type = "text";
             else
-                x.type = "password";
+                Password.type = "password";
         }
 
         if(new URLSearchParams(location.search).get("mensaje") === "wrongpwd"){

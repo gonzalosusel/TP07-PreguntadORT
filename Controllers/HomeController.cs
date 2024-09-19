@@ -32,7 +32,7 @@ public class HomeController : Controller
         ViewBag.DatosUsuario = GetUserData(Request);
         if(!ViewBag.DatosUsuario.Item3) return Redirect(Url.Action("IniciarSesion", "Home") ?? "");
 
-        if(!Juego.CargarPartida(IdDificultad, IdCategoria)) return Redirect(Url.Action("ConfigurarJuego", "Home") ?? "");
+        if(!Juego.CargarPartida(IdDificultad, IdCategoria)) return Redirect(Url.Action("ConfigurarJuego", "Home", new{mensaje="noquestions"}) ?? "");
         
         if(IdCategoria == -1){
             Juego.TodasLasCategorias = true;

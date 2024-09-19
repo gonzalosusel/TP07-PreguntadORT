@@ -169,7 +169,7 @@ body{
 
 @keyframes MoverSignosPregunta{
   0%{
-      transform: translateY(50px);
+      transform: translateY(40px);
       opacity: 1;
   }
   100%{

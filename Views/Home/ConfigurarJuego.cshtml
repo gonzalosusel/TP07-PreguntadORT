@@ -3,6 +3,10 @@
 }
 
 <div class="formulario">
+    <div id="noquestions" class="alert alert-danger d-none">
+        <p>Desgraciadamente no encontramos ninguna pregunta que cumpla esos requisitos</p>
+    </div>
+
     <h2>Crear nueva partida</h2>
     <form method="POST" action='@Url.Action("Comenzar", "Home")'>
         <div class="form-group">
@@ -25,4 +29,10 @@
 
         <button type="submit" class="btn btn-primary">Enviar</button>
     </form>
+
+    <script>
+        if(new URLSearchParams(location.search).get("mensaje") === "noquestions"){
+            document.querySelector("#noquestions").classList.remove("d-none");
+        }
+    </script>
 </div>
