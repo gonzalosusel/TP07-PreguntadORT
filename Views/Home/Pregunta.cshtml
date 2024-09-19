@@ -4,7 +4,7 @@
 }
 
 <div class="text-center">
-    <p>Tu nombre de usuario: @ViewBag.Username | Tu puntaje actual: @ViewBag.PuntajeActual | Tiempo restante: <span id="minutes"></span>:<span id="seconds"></span></p>
+    <p>Tu nombre de usuario: @ViewBag.DatosUsuario.Item1 | Tu puntaje actual: @ViewBag.PuntajeActual | Tiempo restante: <span id="minutes"></span>:<span id="seconds"></span></p>
     <p>Pregunta N°@ViewBag.Progreso</p>
     <h2>@ViewBag.Pregunta.Enunciado</h2>
     @if(!string.IsNullOrEmpty(ViewBag.Pregunta.Foto)){

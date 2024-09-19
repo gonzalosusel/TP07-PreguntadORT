@@ -68,9 +68,11 @@ public static class BD{
     }
 
     // True = inició sesión
-    public static bool Autenticado(string Usuario, string Password){
+    public static bool Autenticado(string? Username, string? Password){
+        if(Username == null || Password == null) return false;
+
         using SqlConnection con = new(ConnectionString);
-        return con.QueryFirstOrDefault<object>("SELECT * FROM Usuarios WHERE Nombre=@pUsuario AND Password=@pPassword", new{pUsuario=Usuario, pPassword=Password}) != null;
+        return con.QueryFirstOrDefault<object>("SELECT * FROM Usuarios WHERE Username=@pUsername AND Password=@pPassword", new{pUsername=Username, pPassword=Password}) != null;
     }
 
     public static void CrearPregunta(Pregunta pregunta, List<Respuesta> respuestas){
@@ -93,7 +95,33 @@ public static class BD{
 
     public static void AñadirPuntaje(PuntajeUsuario puntaje){
         using SqlConnection con = new(ConnectionString);
-        con.Execute("INSERT INTO Puntajes(FechaHora, Username, Puntaje) VALUES(@pFechaHora, @pUsername, @pPuntaje)",
+        con.Execute("EXEC sp_AñadirPuntaje @pFechaHora, @pUsername, @pPuntaje",
         new{pFechaHora=puntaje.FechaHora, pUsername=puntaje.Username, pPuntaje=puntaje.Puntaje});
+    }
+
+    public static (string Username, bool EsAdmin, bool InicioSesion) DatosUsuario(string? Username, string? Password){
+        if(!Autenticado(Username, Password)) return ("", false, false);
+
+        using SqlConnection con = new(ConnectionString);
+        if(con.QueryFirst<int>("SELECT COUNT(*) FROM Usuarios WHERE Username=@pUsername AND Password=@pPassword",
+        new{pUsername=Username, pPassword=Password}) == 0) return ("", false, false);
+
+        var Datos = con.QueryFirst<(string Username, bool EsAdmin)>("SELECT Username, EsAdmin FROM Usuarios WHERE Username=@pUsername AND Password=@pPassword",
+        new{pUsername=Username, pPassword=Password});
+
+        return (Datos.Username, Datos.EsAdmin, true);
+    }
+
+    public static bool RegistrarUsuario(string Username, string Password){
+        using SqlConnection con = new(ConnectionString);
+        if(con.QueryFirstOrDefault<int>("SELECT COUNT(*) FROM Usuarios WHERE Username=@pUsername", new{pUsername=Username}) > 0) return false;
+        con.Execute("INSERT INTO Usuarios(Username, Password, EsAdmin, puntosAcumulados) VALUES(@pUsername, @pPassword, 0, 0)",
+        new{pUsername=Username, pPassword=Password});
+        return true;
+    }
+    
+    public static int ObtenerPuntos(string Username){
+        using SqlConnection con = new(ConnectionString);
+        return con.QueryFirstOrDefault<int>("SELECT puntosAcumulados FROM Usuarios WHERE Username=@pUsername", new{pUsername=Username});
     }
 }

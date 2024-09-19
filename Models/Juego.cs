@@ -8,6 +8,7 @@ public static class Juego{
     public static bool TodasLasCategorias = false;
     public static int Tiempo;
     public const int DefaultTiempo = 60000;
+    public static bool EnPartida {get; private set;}
 
     public static void InicializarJuego(){
         Username = "";
@@ -17,12 +18,13 @@ public static class Juego{
         Preguntas = new();
         Respuestas = new();
         Tiempo = DefaultTiempo;
+        EnPartida = false;
     }
 
-    public static bool CargarPartida(string _Username, int IdDificultad, int IdCategoria){
-        Username = _Username;
+    public static bool CargarPartida(int IdDificultad, int IdCategoria){
         Preguntas = BD.ObtenerPreguntas(IdDificultad, IdCategoria);
         Respuestas = BD.ObtenerRespuestas(Preguntas);
+        EnPartida = true;
         return Preguntas.Count > 0;
     }
 
