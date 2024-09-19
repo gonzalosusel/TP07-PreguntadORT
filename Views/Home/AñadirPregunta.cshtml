@@ -2,9 +2,9 @@
     ViewData["title"] = "Iniciar sesión";
 }
 
-<div>
+<div class="formulario">
     <form method="POST" action='@Url.Action("GuardarPreguntaAñadida", "Home")'>
-        <label>Datos del admin</label>
+        <p>Datos del admin</p>
         <div class="form-group">
             <input autocomplete="off" maxlength="50" required="required" class="form-control" type="text" name="Username" placeholder="Nombre de usuario"><br>
         </div>
@@ -13,7 +13,7 @@
             <input autocomplete="off" maxlength="255" required="required" class="form-control" type="password" name="Password" placeholder="Contraseña"><br>
         </div>
 
-        <label>Pregunta</label>
+        <p>Pregunta</p>
         <div class="form-group">
             <select class="form-control" required="required" name="IdDificultad">
                 @foreach(Dificultad dificultad in ViewBag.Dificultades){
@@ -38,7 +38,7 @@
             <textarea name="PrEnunciado" maxlength="250" placeholder="Enunciado de la pregunta" class="form-control"></textarea><br>
         </div>
 
-        <label>Respuestas</label>
+        <p>Respuestas</p>
         @for(int i = 1; i < 5; i++){
             string Name = "ContenidoR" + @i;
             <div class="form-group">

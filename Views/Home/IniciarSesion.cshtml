@@ -1,0 +1,41 @@
+@{
+    ViewData["title"] = "Iniciar sesión";
+}
+
+<div class="formulario">
+    <div id="wrongpwd" class="alert alert-danger d-none">
+        <p>Usuario o contraseña incorrectos</p>
+    </div>
+
+    <h2>Iniciar sesión</h2>
+    <form method="POST" action='@Url.Action("VerificarInicio", "Home")'>
+        <div class="form-group">
+            <input autocomplete="off" maxlength="50" pattern=".*\S+.*" title="El nombre de usuario debe tener al menos un caracter y no puede ser un espacio en blanco" required="required" class="form-control" type="text" name="Username" placeholder="Nombre de usuario"><br>
+        </div>
+
+        <div class="form-group">
+            <input id="Password" autocomplete="off" minlength="8" maxlength="255" required="required" class="form-control" type="password" name="Password" placeholder="Contraseña"><br>
+        </div>
+
+        <div class="form-group">
+            <input id="togglePwd" type="checkbox" onclick="toggle()">
+            <label for="togglePwd">Mostrar contraseña</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+
+    <script>
+        function toggle() {
+            var x = document.querySelector("#Password");
+            if (x.type === "password")
+                x.type = "text";
+            else
+                x.type = "password";
+        }
+
+        if(new URLSearchParams(location.search).get("mensaje") === "wrongpwd"){
+            document.querySelector("#wrongpwd").classList.remove("d-none");
+        }
+    </script>
+</div>

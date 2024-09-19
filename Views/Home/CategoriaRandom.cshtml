@@ -15,9 +15,8 @@
     </script>
 }
 
-<div style="display: flex; justify-content: center; vertical-align: middle;">
-    <h1 id="Categoria"></h1>
-</div>
+<h1 id="Categoria"></h1>
+
 <script type="module">
     const VecesQuePasaLaCategoriaCorrecta = 3; // valor trivial, puede ser cualquiera
 
@@ -32,7 +31,8 @@
         if(TiempoEntreCambio <= 200) TiempoEntreCambio = 200;
         if(Index >= Categorias.length) Index = 0;
         TextoCategoria.innerText = Categorias[Index++];
-        TextoCategoria.style.color = "#" + Math.floor(Math.random()*16777215).toString(16);
+        TextoCategoria.style.color = "#" + Math.floor(Math.random() * 16777215).toString(16);
+
         if(TextoCategoria.innerText == CategoriaElegida) CantidadVecesAparecioElegida++;
         if(CantidadVecesAparecioElegida >= VecesQuePasaLaCategoriaCorrecta) Pasando = false;
         await new Promise(r => setTimeout(r, TiempoEntreCambio));

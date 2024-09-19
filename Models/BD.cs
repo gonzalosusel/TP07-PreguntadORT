@@ -88,7 +88,7 @@ public static class BD{
 
     public static List<PuntajeUsuario> ObtenerTablaPuntajes(){
         using SqlConnection con = new(ConnectionString);
-        return con.Query<PuntajeUsuario>("SELECT * FROM Puntajes").OrderByDescending(puntaje => puntaje.Puntaje).ToList() ?? new List<PuntajeUsuario>();
+        return con.Query<PuntajeUsuario>("SELECT FechaHora, Username, Puntaje FROM Puntajes p INNER JOIN Usuarios u ON p.IdUsuario=u.IdUsuario").OrderByDescending(puntaje => puntaje.Puntaje).ToList() ?? new List<PuntajeUsuario>();
     }
 
     public static void AñadirPuntaje(PuntajeUsuario puntaje){

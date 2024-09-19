@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using TP_PreguntadORT.Models;
+using System.Web;
 
 namespace TP_PreguntadORT.Controllers;
 
@@ -12,6 +13,11 @@ public class HomeController : Controller
     public IActionResult Index() => View();
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)] public IActionResult Error() => View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     
+
+    // private (string Username, bool EsAdmin) GetUserData(HttpRequest Request){
+    //     BD.DatosUsuario(Request.)
+    // }
+
     public IActionResult ConfigurarJuego(){
         Juego.InicializarJuego();
         ViewBag.Categorias = BD.ObtenerCategorias();
@@ -92,6 +98,23 @@ public class HomeController : Controller
         return View();
     }
 
+    public IActionResult IniciarSesion() => View();
+
+    [HttpPost]
+    public IActionResult VerificarInicio(string Username, string Password){
+        if(BD.Autenticado(Username, Password)){
+            var cookieOptions = new CookieOptions();
+            cookieOptions.Expires = DateTime.Now.AddDays(2);
+            cookieOptions.Path = "/"; 
+
+            Response.Cookies.Append("Username", Username, cookieOptions);
+            Response.Cookies.Append("Password", Password, cookieOptions);
+            return Redirect(Url.Action("Index", "Home") ?? "");
+        }
+
+        return Redirect(Url.Action("IniciarSesion", "Home", new{mensaje="wrongpwd"}) ?? "");
+    }
+
     [HttpPost]
     public IActionResult GuardarPreguntaAñadida(string Username, string Password, int IdDificultad, int IdCategoria, string PrEnunciado, string PrFoto, string ContenidoR1, string ContenidoR2, string ContenidoR3, string ContenidoR4, int RCorrecta){
         if(!BD.Autenticado(Username, Password)) return Redirect(Url.Action("Index", "Home") ?? "");
@@ -109,6 +132,12 @@ public class HomeController : Controller
 
     public IActionResult HighScores(){
         ViewBag.TablaPuntajes = BD.ObtenerTablaPuntajes();
+        return View();
+    }
+
+    public IActionResult prueba(){
+        ViewBag.prueba = Request.Cookies["Username"];
+
         return View();
     }
 }
