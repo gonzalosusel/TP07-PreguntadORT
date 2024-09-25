@@ -50,14 +50,14 @@ public static class Juego{
             if(Preguntas.Count == 0) return new Pregunta();
             Progreso++;
 
-            return Preguntas[new Random().Next(0, Preguntas.Count)];
+            return Preguntas[new Random().Next(Preguntas.Count)];
         } else {
             List<Pregunta> PreguntasCategoria = Preguntas.Where(pregunta => pregunta.IdCategoria == IdCategoriaElegida).ToList();
             
             if(PreguntasCategoria.Count == 0) return new Pregunta();
             Progreso++;
 
-            return PreguntasCategoria[new Random().Next(0, PreguntasCategoria.Count)];
+            return PreguntasCategoria[new Random().Next(PreguntasCategoria.Count)];
         }
     }
 

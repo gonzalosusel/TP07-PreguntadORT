@@ -50,7 +50,7 @@ public class HomeController : Controller
         if(!Juego.TodasLasCategorias) return Redirect(Url.Action("Jugar", "Home") ?? "");
 
         List<Categoria> CategoriasPendientes = Juego.ObtenerCategoriasPendientes();
-        Categoria CategoriaElegida = CategoriasPendientes[new Random().Next(0, CategoriasPendientes.Count)];
+        Categoria CategoriaElegida = CategoriasPendientes[new Random().Next(CategoriasPendientes.Count)];
         IdCategoriaElegida = CategoriaElegida.IdCategoria;
 
         ViewBag.CategoriasPendientes = CategoriasPendientes;
