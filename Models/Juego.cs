@@ -8,6 +8,7 @@ public static class Juego{
     public static bool TodasLasCategorias = false;
     public static int Tiempo;
     public const int DefaultTiempo = 60000;
+    public const int LimitePreguntas = 7;
     public static bool EnPartida {get; private set;}
 
     public static void InicializarJuego(){

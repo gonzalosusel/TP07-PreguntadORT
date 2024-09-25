@@ -54,7 +54,7 @@ public static class BD{
 
     public static List<Respuesta> ObtenerRespuestas(int IdPregunta){
         using SqlConnection con = new(ConnectionString);
-        return con.Query<Respuesta>("SELECT * FROM Respuestas WHERE IdPregunta=@pIdPregunta", new{pIdPregunta=IdPregunta}).ToList();
+        return con.Query<Respuesta>("SELECT TOP 4 * FROM Respuestas WHERE IdPregunta=@pIdPregunta", new{pIdPregunta=IdPregunta}).ToList();
     }
 
     public static Respuesta? ObtenerRespuesta(int IdPregunta, int IdRespuesta){

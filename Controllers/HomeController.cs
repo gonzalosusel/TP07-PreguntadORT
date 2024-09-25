@@ -64,6 +64,8 @@ public class HomeController : Controller
         // Si esta view se abrió directamente y sin pasar por el formulario, volver al formulario
         if(!Juego.EnPartida) return Redirect(Url.Action("ConfigurarJuego", "Home") ?? "");
 
+        if(Juego.Progreso == Juego.LimitePreguntas) return Redirect(Url.Action("Fin", "Home") ?? "");
+
         // Si se eligieron todas las categorias pero no hay una asignada, significa que uno se salteó la ruleta
         if(Juego.TodasLasCategorias && IdCategoriaElegida == -1) return Redirect(Url.Action("CategoriaRandom", "Home") ?? "");
 
@@ -151,7 +153,7 @@ public class HomeController : Controller
         }
 
         BD.CrearPregunta(pregunta, respuestas);
-        return Redirect(Url.Action("AñadirPregunta", "Home") ?? "");
+        return Redirect(Url.Action("AñadirPregunta", "Home", new{mensaje="added"}) ?? "");
     }
 
     public IActionResult HighScores(){

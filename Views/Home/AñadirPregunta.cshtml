@@ -4,13 +4,8 @@
 
 <div class="formulario">
     <form method="POST" action='@Url.Action("GuardarPreguntaAñadida", "Home")'>
-        <p>Datos del admin</p>
-        <div class="form-group">
-            <input autocomplete="off" maxlength="50" required="required" class="form-control" type="text" name="Username" placeholder="Nombre de usuario"><br>
-        </div>
-
-        <div class="form-group">
-            <input autocomplete="off" maxlength="255" required="required" class="form-control" type="password" name="Password" placeholder="Contraseña"><br>
+        <div id="added" class="alert alert-success d-none">
+            <p>Pregunta añadida exitosamente</p>
         </div>
 
         <p>Pregunta</p>
@@ -31,7 +26,7 @@
         </div>
 
         <div class="form-group">
-            <input autocomplete="off" required="required" maxlength="500" class="form-control" type="text" name="PrFoto" placeholder="Foto"><br>
+            <input autocomplete="off" maxlength="500" class="form-control" type="text" name="PrFoto" placeholder="Foto"><br>
         </div>
 
         <div class="form-group">
@@ -52,4 +47,10 @@
 
         <button type="submit" class="btn btn-primary">Enviar</button>
     </form>
+
+    <script>
+        if(new URLSearchParams(location.search).get("mensaje") === "added"){
+            document.querySelector("#added").classList.remove("d-none");
+        }
+    </script>
 </div>
