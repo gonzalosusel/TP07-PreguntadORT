@@ -28,6 +28,7 @@ public class HomeController : Controller
         return View();
     }
 
+    [HttpPost]
     public IActionResult Comenzar(int IdDificultad, int IdCategoria){
         ViewBag.DatosUsuario = GetUserData(Request);
         if(!ViewBag.DatosUsuario.Item3) return RedirectToAction("IniciarSesion", "Home");

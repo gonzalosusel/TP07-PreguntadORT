@@ -25,8 +25,7 @@ public static class Juego{
     public static bool CargarPartida(int IdDificultad, int IdCategoria){
         Preguntas = BD.ObtenerPreguntas(IdDificultad, IdCategoria);
         Respuestas = BD.ObtenerRespuestas(Preguntas);
-        EnPartida = true;
-        return Preguntas.Count > 0;
+        return (EnPartida = Preguntas.Count > 0); // El operador = retorna lo que asigna, por lo que le está asignando a EnPartida y devolviendo su valor al mismo tiempo
     }
 
     // Recibir lista de cada categoría de cada pregunta que aún se puede responder
